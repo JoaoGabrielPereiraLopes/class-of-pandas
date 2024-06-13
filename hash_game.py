@@ -1,5 +1,5 @@
 # in this code my objective is chalenge my knowledge make one hash game 
-
+import pandas as pd
 player1_points=0#points of player 1
 player2_points=0#points of player 2
 height=0
@@ -7,7 +7,7 @@ width=0
 def generator():#create a board
     board=[]
     for depth in range(0,3):
-        board.append([' ',' ',' '])
+        board.append(['_','_','_'])
     return board
 board=generator()#received the list represent board
 
@@ -66,18 +66,16 @@ def vitoria_X(player2_points):#check if player 1 wins
         return True
 rodada=0
 while True:
-    for x in range(0,3):
-        print(f"{board[x][0]}|{board[x][1]}|{board[x][2]}")
+    print(pd.DataFrame(board))
     width=int(input('inform a X cordenate: '))#colect the X cordenate the movie of player
     heigth=int(input('inform a Y cordenate: '))#colect the X cordenate the movie of player
     #the cordenate sistem starts at one to make it easier comprended for usuary
     
-    if rodada%2==0 and board[heigth-1][width-1]==" ":
-        board[heigth-1][width-1]='O'#if is player1 turn regist O in the case of board
+    if rodada%2==0 and board[heigth][width]=="_":
+        board[heigth][width]='O'#if is player1 turn regist O in the case of board
         rodada+=1
-        print(rodada)
-    if rodada%2==1 and board[heigth-1][width-1]==" ":
-        board[heigth-1][width-1]='X'#if is player2 turn regist X in the case of board
+    if rodada%2==1 and board[heigth][width]=="_":
+        board[heigth][width]='X'#if is player2 turn regist X in the case of board
         rodada+=1
     if vitoria_O(player1_points):#verifi if player 1 win
         board=generator()
